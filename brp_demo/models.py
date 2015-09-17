@@ -38,6 +38,7 @@ class Visit(models.Model):
     Visit Model
     '''
     ehb = models.ForeignKey(PortalSubject)
+    visit_id = models.CharField(max_length=255, primary_key=True)
     visit_type = models.CharField(max_length=255)
     height = models.IntegerField()
     weight = models.IntegerField()
@@ -51,3 +52,35 @@ class Visit(models.Model):
         db_table = u'visit'
         verbose_name = 'Visit'
         verbose_name_plural = 'Visits'
+
+class Meal(models.Model):
+    '''
+    Meal Model
+    '''
+    id = models.IntegerField(primary_key=True)
+    ehb = models.ForeignKey(PortalSubject)
+    visit = models.ForeignKey(Visit)
+    meal_type = models.CharField(max_length=255)
+    meal_description = models.CharField(max_length=255)
+    healthy = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = u'meal'
+        verbose_name = 'Meal'
+        verbose_name_plural = 'Meals'
+
+
+class Medication(models.Model):
+    '''
+    Medication model
+    '''
+    id = models.IntegerField(primary_key=True)
+    ehb = models.ForeignKey(PortalSubject)
+    visit = models.ForeignKey(Visit)
+    visit_type = models.CharField(max_length=255)
+    med_type = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = u'visit_medications'
+        verbose_name = 'Visit Medication'
+        verbose_name_plural = 'Visit Medications'
