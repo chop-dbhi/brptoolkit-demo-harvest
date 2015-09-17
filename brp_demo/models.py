@@ -31,3 +31,23 @@ class Subject(models.Model):
         db_table = u'subject'
         verbose_name = 'Subject'
         verbose_name_plural = 'Subjects'
+
+
+class Visit(models.Model):
+    '''
+    Visit Model
+    '''
+    ehb = models.ForeignKey(PortalSubject)
+    visit_type = models.CharField(max_length=255)
+    height = models.IntegerField()
+    weight = models.IntegerField()
+    prealbumin = models.FloatField()
+    creatine = models.FloatField()
+    total_chol = models.FloatField()
+    transferrin = models.FloatField()
+    ibd_flag = models.BooleanField()
+
+    class Meta:
+        db_table = u'visit'
+        verbose_name = 'Visit'
+        verbose_name_plural = 'Visits'
