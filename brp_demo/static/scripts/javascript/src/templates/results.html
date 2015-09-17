@@ -1,0 +1,88 @@
+<div class='navbar navbar-masthead results-workflow-navbar'>
+    <div class='navbar-inner'>
+        <div class='navbar-text pull-right'>
+            <span class='paginator-region'></span>
+            <button data-toggle=columns-dialog class='btn btn-primary btn-mini' title='Change Columns'>
+                <i class=icon-columns></i> <span class=large-display-button-text>Change Columns...</span>
+            </button>
+            <button data-toggle=exporter-dialog class='btn btn-primary btn-mini' title='Export Data'>
+                <i class=icon-file></i> <span class=large-display-button-text>Export...</span>
+            </button>
+            <button data-toggle=query-dialog class='btn btn-primary btn-mini' title='Save/Share Query'>
+                <i class=icon-save></i> <span class=large-display-button-text>Save/Share Query...</span>
+            </button>
+            <button data-toggle=context-panel class='btn btn-primary btn-mini expand-collapse' title='Hide Filter Panel'>
+                <i class=icon-expand-alt></i> <span class=large-display-button-text>Hide Filters</span>
+            </button>
+        </div>
+        <span class='navbar-text count-region'></span>
+    </div>
+</div>
+
+<div class='loading-overlay hide'>
+    <h4><i class='icon-spinner icon-spin'></i> Loading Results</h4>
+</div>
+
+<div class=table-region></div>
+
+<div class="modal hide" id="aliquotList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" style="margin-bottom:30px;">Aliquot List<div id="filter-div"></div></h4>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+            <button id="exportAliquots" class="btn btn-small btn-primary">Export</a></button>
+            <button id="confirmModalNoBtn" class="btn btn-small" data-dismiss="modal">Close</a></button>
+        </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<script>
+
+    $(document).on('click', '.aliquot_button', function(){
+        loadAliquots($(this).data('id'), 0)
+    })
+    $(document).on('click', '#filterButton', function(){
+        state = $("#filterButton").text()
+        var uid = $("#aliquotList").data('uid')
+        if (state == 'Not Filtered'){
+            loadAliquots(uid, 1)
+        } else {
+            loadAliquots(uid, 0)
+        }
+    })
+    $(document).on('click', '#exportAliquots', function(){
+        state = $("#filterButton").text()
+        var uid = $("#aliquotList").data('uid')
+        if (state == 'Not Filtered'){
+            exportAliquots(uid, 0)
+        } else {
+            exportAliquots(uid, 1)
+        }
+    })
+    function loadAliquots(uid, filter){
+        $("#aliquotList .modal-body").html("<center><i class='icon-spinner icon-spin'></i> Loading Aliquots</center>")
+        $("#aliquotList").data('uid', uid)
+        var url = cilantro.session.get('url')
+        $.ajax({
+            type: "GET",
+            url: url + 'aliquots/' + uid +'/?filter=' + filter,
+            success: function(data){
+                $("#aliquotList .modal-body").html(data.table_html)
+                $("#aliquotList #filter-div").html(data.filter_html)
+
+            }
+        });
+    }
+    function exportAliquots(uid, filter){
+        $("#aliquotList").data('uid', uid)
+        var url = cilantro.session.get('url')
+        window.location.href = url + 'aliquots/' + uid +'/?export=1&filter=' + filter
+
+    }
+</script>

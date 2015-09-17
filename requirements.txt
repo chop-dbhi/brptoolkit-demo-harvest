@@ -1,0 +1,26 @@
+# This file collects all required third-party applications that are needed
+# to run this project. Later you can install all these apps in a row
+# using pip. Example::
+#
+#     pip install -U -r requirements.txt
+
+# Core requirements
+Django>=1.4.11,<1.6
+Markdown
+uWSGI
+Fabric
+avocado>=2.3.0,<2.4
+serrano>=2.3.0,<2.4
+modeltree>=1.1.7,<1.2
+git+https://github.com/tjrivera/django-haystack.git@hotfix#egg=django-haystack
+python-memcached==1.53
+django-siteauth==0.9b1
+# Database Drivers, the Python stdlib has support for SQLite
+psycopg2
+whoosh>=2.5
+django-environ
+south>=1.0
+
+# Logging
+raven
+xlrd

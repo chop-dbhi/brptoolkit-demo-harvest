@@ -1,0 +1,2 @@
+define(["./base"],function(t){var e=t.Model.extend({}),n=t.Collection.extend({model:e}),o=t.Model.extend({constructor:function(){this.counts=new n,t.Model.prototype.constructor.apply(this,arguments)},parse:function(e,n){if(t.Model.prototype.parse.call(this,e,n),this.links.counts){var o=this;this.counts.url=function(){return o.links.counts},this.counts.fetch({reset:!0})}}});return{Stats:o}});
+//# sourceMappingURL=stats.js.map

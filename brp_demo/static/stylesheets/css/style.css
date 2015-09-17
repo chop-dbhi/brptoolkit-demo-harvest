@@ -1,0 +1,60 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    padding-top:60px;
+}
+
+code {
+    color: #000
+}
+
+#wrap {
+    position: relative;
+    min-height: 100%;
+}
+
+#wrap > .container-fluid {
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+#footer {
+    margin: 20px auto;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    width: 50%;
+    text-align: center;
+    color: #999;
+}
+
+.panel {
+    margin-top:30px;
+}
+
+@media (max-width: 979px) {
+    body {
+        padding-top: 0
+    }
+
+    #footer {
+        position: static;
+    }
+}
+
+#aliquotList {
+    font-size: .8em;
+    width:80%;
+    margin-left:-40%;
+
+}
+
+.aliquot {
+
+}
+.subaliquot{
+    position: relative;
+    margin-left: 10px;
+}

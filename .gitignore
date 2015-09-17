@@ -1,0 +1,9 @@
+*.py?
+*.sw?
+*.pyc
+*.log*
+.DS_Store
+whoosh.index
+_site
+*.ipynb
+*.env
