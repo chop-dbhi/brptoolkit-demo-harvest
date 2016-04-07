@@ -84,3 +84,12 @@ class Medication(models.Model):
         db_table = u'visit_medications'
         verbose_name = 'Visit Medication'
         verbose_name_plural = 'Visit Medications'
+
+# ETL Metrics
+
+class EtlStats(models.Model):
+    etl_datetime = models.DateTimeField(primary_key=True)
+
+    class Meta:
+        db_table = 'etl_stats'
+

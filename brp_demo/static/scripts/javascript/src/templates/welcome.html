@@ -7,3 +7,16 @@ If this is your first time, welcome to <b>Harvest</b>! This query system allows 
 <li>On the results page you can add data points to your query by selecting Change Columns.</li>
 <li>You can Save or Export the data from your  queries for future use</li>
 </ul>
+<script>
+$.ajax({
+    url: cilantro.data.fields.url + '18/values/'
+}).done(function(data){
+    page = data.num_pages;
+    $.ajax({
+        url: cilantro.data.fields.url + '18/values/?page='+ page
+    }).done(function(data){
+        d = new Date(Date.parse(data.values[data.values.length -1].value));
+        $("#lastETL").text("Data as of " + d.toString());
+    })
+})
+</script>
